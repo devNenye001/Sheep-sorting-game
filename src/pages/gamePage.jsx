@@ -21,32 +21,31 @@ export default function GamePage() {
   }, []);
 
   // spawn animals periodically
- useEffect(() => {
-  const spawn = setInterval(() => {
-    const types = ["sheep", "cow", "pig"];
-    const type = types[Math.floor(Math.random() * types.length)];
-    const id = Date.now() + Math.random();
+  useEffect(() => {
+    const spawn = setInterval(() => {
+      const types = ["sheep", "cow", "pig"];
+      const type = types[Math.floor(Math.random() * types.length)];
+      const id = Date.now() + Math.random();
 
-    // add new animal
-    setAnimals((prev) => [...prev, { id, type }]);
+      // add new animal
+      setAnimals((prev) => [...prev, { id, type }]);
 
-    // after crossing screen, check if it's still there
-    setTimeout(() => {
-      setAnimals((prev) => {
-        const animal = prev.find((a) => a.id === id);
-        if (animal && animal.type === "sheep") {
-          // 🐑❌ missed a sheep
-          setMistakes((m) => m + 1);
-        }
-        // remove the animal from the list
-        return prev.filter((a) => a.id !== id);
-      });
-    }, speed * 1000 + 1000);
-  }, 1000); // spawn interval
+      // after crossing screen, check if it's still there
+      setTimeout(() => {
+        setAnimals((prev) => {
+          const animal = prev.find((a) => a.id === id);
+          if (animal && animal.type === "sheep") {
+            // 🐑❌ missed a sheep
+            setMistakes((m) => m + 1);
+          }
+          // remove the animal from the list
+          return prev.filter((a) => a.id !== id);
+        });
+      }, speed * 1000 + 1000);
+    }, 1000); // spawn interval
 
-  return () => clearInterval(spawn);
-}, [speed]);
-
+    return () => clearInterval(spawn);
+  }, [speed]);
 
   // handle clicks
   const handleClick = (type, id) => {
@@ -66,10 +65,10 @@ export default function GamePage() {
 
   // game over when mistakes reach 3
   useEffect(() => {
-  if (mistakes >= 3) {
-    navigate("/gameover", { state: { score } });
-  }
-}, [mistakes, navigate, score]);
+    if (mistakes >= 3) {
+      navigate("/gameover", { state: { score } });
+    }
+  }, [mistakes, navigate, score]);
 
   return (
     <section className="game-page">
@@ -77,10 +76,7 @@ export default function GamePage() {
         <img src="/game-logo.png" alt="burgergames-logo" />
         <div className="scoreboard">
           <div className="sheep">
-            <img
-              src="/sheep1-removebg-preview.png"
-              alt="sheep icon"
-            />
+            <img src="/sheep1-removebg-preview.png" alt="sheep icon" />
             <span className="sheeps-clicked">{score}</span>
           </div>
           <div className="mistakes">

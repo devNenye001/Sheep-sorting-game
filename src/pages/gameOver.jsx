@@ -42,7 +42,7 @@ function GameOver() {
       </div>
 
       <div className="buttons">
-        <Button value="NEW GAME" onClick={handleNewGame} />
+        <Button value="NEW GAME" onClick={handleNewGame } />
       </div>
     </section>
   );

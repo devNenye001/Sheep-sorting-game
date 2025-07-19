@@ -3,13 +3,12 @@ import Button from "../components/button";
 function Credits() {
   const navigate = useNavigate();
 
-    const handleHome = () => {
+  const handleHome = () => {
     const clickSound = new Audio("/click-sound.wav");
     clickSound.play();
     navigate("/home");
   };
   return (
-
     <section className="credits-page">
       <img src="/game-logo.png" alt="" />
       <h1>CREDITS</h1>

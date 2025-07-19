@@ -7,11 +7,19 @@ function GameIntro() {
   const [fadeOut, setFadeOut] = useState(false);
   const navigate = useNavigate();
 
+   // play background music on mount
   useEffect(() => {
-    // Play sound once
-    const audio = new Audio("/game-intro.mp3");
-    audio.play();
+    const music = new Audio("/game-intro.mp3");
+    music.loop = true;
+    music.volume = 0.5;
+    music.play().catch(() => console.log("Autoplay blocked"));
+    return () => {
+      music.pause();
+      music.currentTime = 0;
+    };
+  }, []);
 
+  useEffect(() => {
     // Start fade out after 4.5s
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);

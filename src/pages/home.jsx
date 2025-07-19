@@ -5,25 +5,17 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
 
+   // play background music on mount
   useEffect(() => {
-  const audio = new Audio("/game-home-sound.mp3"); // no 'public'
-  audio.loop = true;
-  audio.volume = 0.5;
-
-  // autoplay policy: browsers block sound until user interacts
-  const playAudio = () => {
-    audio.play().catch(() => console.log("Autoplay blocked until user interacts"));
-    document.removeEventListener("click", playAudio);
-  };
-
-  document.addEventListener("click", playAudio);
-
-  return () => {
-    audio.pause();
-    audio.currentTime = 0;
-    document.removeEventListener("click", playAudio);
-  };
-}, []);
+    const music = new Audio("/game-home-sound.mp3");
+    music.loop = true;
+    music.volume = 0.5;
+    music.play().catch(() => console.log("Autoplay blocked"));
+    return () => {
+      music.pause();
+      music.currentTime = 0;
+    };
+  }, []);
 
 
   const handlePlay = () => {
