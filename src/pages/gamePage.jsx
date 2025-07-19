@@ -44,7 +44,7 @@ export default function GamePage() {
       // speed up a little every 5 sheep
       setSpeed((prev) => (score % 5 === 4 ? Math.max(1, prev - 0.3) : prev));
     } else {
-      const badSound = new Audio("/sounds/wrong.mp3");
+      const badSound = new Audio("/wrong.mp3");
       badSound.play();
       setMistakes((m) => m + 1);
     }

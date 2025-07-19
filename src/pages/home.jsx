@@ -6,16 +6,25 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const audio = new Audio("/game-home-sound.mp3");
-    audio.loop = true;
-    audio.volume = 0.5;
-    audio.play();
+  const audio = new Audio("/game-home-sound.mp3"); // no 'public'
+  audio.loop = true;
+  audio.volume = 0.5;
 
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
-  }, []);
+  // autoplay policy: browsers block sound until user interacts
+  const playAudio = () => {
+    audio.play().catch(() => console.log("Autoplay blocked until user interacts"));
+    document.removeEventListener("click", playAudio);
+  };
+
+  document.addEventListener("click", playAudio);
+
+  return () => {
+    audio.pause();
+    audio.currentTime = 0;
+    document.removeEventListener("click", playAudio);
+  };
+}, []);
+
 
   const handlePlay = () => {
     const clickSound = new Audio("/click-sound.wav");

@@ -23,7 +23,7 @@ function GameOver() {
 
   return (
     <section className="GameOver-page">
-      <img src="/Assests/game-logo.png" alt="burgergames-logo" />
+      <img src="/game-logo.png" alt="burgergames-logo" />
       <h1>GAME OVER</h1>
       <p>You did your best</p>
 
