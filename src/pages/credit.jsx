@@ -2,7 +2,14 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
 function Credits() {
   const navigate = useNavigate();
+
+    const handleHome = () => {
+    const clickSound = new Audio("/click-sound.wav");
+    clickSound.play();
+    navigate("/home");
+  };
   return (
+
     <section className="credits-page">
       <img src="/game-logo.png" alt="" />
       <h1>CREDITS</h1>
@@ -14,7 +21,7 @@ function Credits() {
         <br /> <br />
         Free sounds from pixabay
       </p>
-      <Button value="GO BACK" onClick={() => navigate("/home")} />
+      <Button value="GO BACK" onClick={handleHome} />
     </section>
   );
 }

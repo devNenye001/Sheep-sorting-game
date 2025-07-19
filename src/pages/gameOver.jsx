@@ -21,6 +21,12 @@ function GameOver() {
     };
   }, []);
 
+    const handleNewGame = () => {
+    const clickSound = new Audio("/click-sound.wav");
+    clickSound.play();
+    navigate("/game");
+  };
+
   return (
     <section className="GameOver-page">
       <img src="/game-logo.png" alt="burgergames-logo" />
@@ -36,7 +42,7 @@ function GameOver() {
       </div>
 
       <div className="buttons">
-        <Button value="NEW GAME" onClick={() => navigate("/loading")} />
+        <Button value="NEW GAME" onClick={handleNewGame} />
       </div>
     </section>
   );

@@ -21,19 +21,32 @@ export default function GamePage() {
   }, []);
 
   // spawn animals periodically
-  useEffect(() => {
-    const spawn = setInterval(() => {
-      const types = ["sheep", "cow", "pig"];
-      const type = types[Math.floor(Math.random() * types.length)];
-      const id = Date.now() + Math.random();
-      setAnimals((prev) => [...prev, { id, type }]);
-      // remove after crossing screen (6s or so)
-      setTimeout(() => {
-        setAnimals((prev) => prev.filter((a) => a.id !== id));
-      }, speed * 1000 + 1000);
-    }, 1000); // new animal every 1.5s
-    return () => clearInterval(spawn);
-  }, [speed]);
+ useEffect(() => {
+  const spawn = setInterval(() => {
+    const types = ["sheep", "cow", "pig"];
+    const type = types[Math.floor(Math.random() * types.length)];
+    const id = Date.now() + Math.random();
+
+    // add new animal
+    setAnimals((prev) => [...prev, { id, type }]);
+
+    // after crossing screen, check if it's still there
+    setTimeout(() => {
+      setAnimals((prev) => {
+        const animal = prev.find((a) => a.id === id);
+        if (animal && animal.type === "sheep") {
+          // 🐑❌ missed a sheep
+          setMistakes((m) => m + 1);
+        }
+        // remove the animal from the list
+        return prev.filter((a) => a.id !== id);
+      });
+    }, speed * 1000 + 1000);
+  }, 1000); // spawn interval
+
+  return () => clearInterval(spawn);
+}, [speed]);
+
 
   // handle clicks
   const handleClick = (type, id) => {
