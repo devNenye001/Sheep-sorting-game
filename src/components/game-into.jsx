@@ -9,7 +9,7 @@ function GameIntro() {
 
   useEffect(() => {
     // Play sound once
-    const audio = new Audio("/public/Assests/sounds/game-intro.mp3");
+    const audio = new Audio("/game-intro.mp3");
     audio.play();
 
     // Start fade out after 4.5s
@@ -30,7 +30,7 @@ function GameIntro() {
 
   return (
     <section className={`game-intro ${fadeOut ? "fade-out" : ""}`}>
-      <img src="/Assests/game-logo.png" alt="BurgerGames Logo" />
+      <img src="/game-logo.png" alt="BurgerGames Logo" />
     </section>
   );
 }
