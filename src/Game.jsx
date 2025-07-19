@@ -11,7 +11,7 @@ import "./pages/styles/home.css";
 import "./pages/styles/credit.css";
 import "./pages/styles/loadingPage.css";
 import "./pages/styles/gamePage.css";
-import "./pages/styles/GameOver.css";
+import "./pages/styles/game-over.css";
 import "./pages/styles/game-intro.css";
 
 // imports from react
