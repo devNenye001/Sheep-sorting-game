@@ -1,0 +1,188 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: "Walter Turncoat", cursive;
+}
+
+/* game-page styling*/
+.game-page {
+  background-image: url("public/Assests/bg/gamebg3.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+}
+
+.game-page img {
+  width: 10%;
+  height: auto;
+}
+
+.game-page h1 {
+  margin: 30px 0;
+  font-weight: 400;
+  font-size: 60px;
+}
+
+.game-page p {
+  font-weight: 400;
+  font-size: 30px;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 70px;
+  text-wrap: wrap;
+}
+
+.top-div {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scoreboard {
+  margin-top: 30px;
+  width: 50%;
+  height: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sheep,
+.mistakes {
+  width: 40%;
+  border-radius: 8px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 1px black;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sheep {
+  width: 25%;
+}
+
+.sheep span,
+.mistakes span {
+  font-size: 30px;
+  font-weight: 400;
+  margin: 0 20px;
+  color: black;
+}
+
+.sheep img {
+  width: 100px;
+  height: auto;
+}
+
+.scoreboard p {
+  font-size: 30px;
+  font-weight: 400;
+  margin: 0 20px;
+}
+
+.mistakes span b {
+  color: #ff0000;
+}
+
+.animal-road {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.animal-road img {
+  width: 20%;
+  margin: 0px 10px;
+  height: auto;
+}
+
+/* responsive */
+@media (max-width: 600px) {
+  .game-page h1 {
+    font-size: 44px;
+    line-height: 60px;
+  }
+  .game-page img {
+    width: 30%;
+  }
+  .game-page p {
+    font-size: 24px;
+    display: inline-block;
+    width: 70%;
+  }
+  .animal-road img {
+    width: 50%;
+  }
+  .scoreboard {
+    justify-content: space-between;
+    flex-direction: column;
+    width: 80%;
+    height: 40%;
+  }
+
+  .sheep,
+  .mistakes {
+    width: 200px;
+    height: 50px;
+  }
+
+  .sheep span,
+  .mistakes span {
+    font-size: 24px;
+    margin: 0 20px;
+  }
+
+  .sheep img {
+    width: 90px;
+    height: auto;
+  }
+
+  .animal-road img {
+    width: 40%;
+    height: auto;
+  }
+}
+
+.animal-road {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.1);
+}
+
+.animal {
+  position: absolute;
+  bottom: 40px;
+  height: 100px;
+  animation: moveAcross linear forwards;
+}
+
+.animal.sheep {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+@keyframes moveAcross {
+  from {
+    right: -150px;
+  }
+  to {
+    right: 100%;
+  }
+}

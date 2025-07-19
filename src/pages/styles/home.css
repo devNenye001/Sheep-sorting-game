@@ -1,0 +1,90 @@
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: "Walter Turncoat", cursive;
+}
+
+/* home-page styling*/
+.home-page{
+    background-image: url("../../../public/Assests/bg/bg00.gif");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+     opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.home-page.fade-in {
+  opacity: 1;
+}
+
+.home-page img{
+    width: 10%;
+    height: auto;
+}
+
+.home-page h1{
+    font-weight: 400;
+    font-size: 128px;
+    text-align: center;
+    color: white;
+    line-height: 110px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.button, .credits{
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #FFC926;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 2px 2px 1px black;
+    transition: translate 0.3s ease;
+}
+
+.button:hover{
+    background-color: hsl(45, 100%, 67%);
+}
+
+.button:active{
+    transform: translateY(4px);
+}
+
+.credits{
+    
+    background-color: #FF2D1E !important;
+}
+
+.credits:hover{
+    background-color: hsl(4, 100%, 66%) !important;
+}
+
+@media (max-width: 600px) {
+    .home-page h1{
+        font-size: 64px;
+        line-height: 60px;
+        margin-bottom: 90px;
+    }
+    .home-page img{
+        width: 30%;
+    }
+    .buttons button{
+        width: 150px;
+        height: 50px;
+        font-size: 18px;
+    }
+}

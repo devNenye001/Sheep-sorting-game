@@ -1,0 +1,95 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+export default function GamePage() {
+  const navigate = useNavigate();
+  const [score, setScore] = useState(0);
+  const [mistakes, setMistakes] = useState(0);
+  const [speed, setSpeed] = useState(3); // seconds per animal
+  const [animals, setAnimals] = useState([]);
+
+  // play background music on mount
+  useEffect(() => {
+    const music = new Audio("/Assests/sounds/game-sound.mp3");
+    music.loop = true;
+    music.volume = 0.5;
+    music.play().catch(() => console.log("Autoplay blocked"));
+    return () => {
+      music.pause();
+      music.currentTime = 0;
+    };
+  }, []);
+
+  // spawn animals periodically
+  useEffect(() => {
+    const spawn = setInterval(() => {
+      const types = ["sheep", "cow", "pig"];
+      const type = types[Math.floor(Math.random() * types.length)];
+      const id = Date.now() + Math.random();
+      setAnimals((prev) => [...prev, { id, type }]);
+      // remove after crossing screen (6s or so)
+      setTimeout(() => {
+        setAnimals((prev) => prev.filter((a) => a.id !== id));
+      }, speed * 1000 + 1000);
+    }, 1000); // new animal every 1.5s
+    return () => clearInterval(spawn);
+  }, [speed]);
+
+  // handle clicks
+  const handleClick = (type, id) => {
+    if (type === "sheep") {
+      const clickSound = new Audio("/Assests/sounds/sheep-sound.mp3");
+      clickSound.play();
+      setScore((s) => s + 1);
+      // speed up a little every 5 sheep
+      setSpeed((prev) => (score % 5 === 4 ? Math.max(1, prev - 0.3) : prev));
+    } else {
+      const badSound = new Audio("/Assests/sounds/wrong.mp3");
+      badSound.play();
+      setMistakes((m) => m + 1);
+    }
+    setAnimals((prev) => prev.filter((a) => a.id !== id));
+  };
+
+  // game over when mistakes reach 3
+  useEffect(() => {
+  if (mistakes >= 3) {
+    navigate("/gameover", { state: { score } });
+  }
+}, [mistakes, navigate, score]);
+
+  return (
+    <section className="game-page">
+      <div className="top-div">
+        <img src="/Assests/game-logo.png" alt="burgergames-logo" />
+        <div className="scoreboard">
+          <div className="sheep">
+            <img
+              src="/Assests/sprites/sheep1-removebg-preview.png"
+              alt="sheep icon"
+            />
+            <span className="sheeps-clicked">{score}</span>
+          </div>
+          <div className="mistakes">
+            <span>
+              MISTAKES: <b>{mistakes}</b>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="animal-road">
+        {animals.map((animal) => (
+          <img
+            key={animal.id}
+            className={`animal ${animal.type}`}
+            style={{ animationDuration: `${speed}s` }}
+            src={`/Assests/sprites/${animal.type}1-removebg-preview.png`}
+            alt={animal.type}
+            onClick={() => handleClick(animal.type, animal.id)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
