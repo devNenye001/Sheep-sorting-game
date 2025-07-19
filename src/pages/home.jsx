@@ -6,7 +6,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const audio = new Audio("/Assests/sounds/game-home-sound.mp3");
+    const audio = new Audio("/game-home-sound.mp3");
     audio.loop = true;
     audio.volume = 0.5;
     audio.play();
@@ -18,20 +18,20 @@ function Home() {
   }, []);
 
   const handlePlay = () => {
-    const clickSound = new Audio("/Assests/sounds/click-sound.wav");
+    const clickSound = new Audio("/click-sound.wav");
     clickSound.play();
     navigate("/loading");
   };
 
   const handleCredits = () => {
-    const clickSound = new Audio("/Assests/sounds/click-sound.wav");
+    const clickSound = new Audio("/click-sound.wav");
     clickSound.play();
     navigate("/credits");
   };
 
   return (
     <section className="home-page fade-in">
-      <img src="/Assests/game-logo.png" alt="burgergames-logo" />
+      <img src="/game-logo.png" alt="burgergames-logo" />
       <h1>SHEEP <br /> SORTING</h1>
       <div className="buttons">
         <Button value="PLAY" onClick={handlePlay} />

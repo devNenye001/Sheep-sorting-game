@@ -7,7 +7,7 @@
 
 /* loading-page styling*/
 .loading-page {
-  background-image: url("public/Assests/bg/bg7.gif");
+  background-image: url("/bg7.gif");
   background-position: center;
   background-size: cover;
   height: 100vh;

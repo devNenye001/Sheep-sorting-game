@@ -10,7 +10,7 @@ function GameOver() {
   const score = location.state?.score ?? 0;
 
   useEffect(() => {
-    const gameOverSound = new Audio("/Assests/sounds/game-over-sound.mp3");
+    const gameOverSound = new Audio("/game-over-sound.mp3");
     gameOverSound.volume = 0.7;
     gameOverSound.play().catch(() => console.log("Autoplay blocked"));
 
@@ -29,7 +29,7 @@ function GameOver() {
 
       <div className="sheep">
         <img
-          src="/Assests/sprites/sheep1-removebg-preview.png"
+          src="/sheep1-removebg-preview.png"
           alt="sheep icon"
         />
         <span className="sheeps-clicked">{score}</span>

@@ -14,7 +14,7 @@ export default function LoadingPage() {
   return (
     <section className="loading-page">
       <div className="top">
-        <img src="/Assests/game-logo.png" alt="burgergames-logo" />
+        <img src="/game-logo.png" alt="burgergames-logo" />
         <h1>HOW TO PLAY</h1>
         <p>
           All you have to do <br />

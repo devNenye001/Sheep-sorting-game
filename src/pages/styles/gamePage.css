@@ -7,7 +7,7 @@
 
 /* game-page styling*/
 .game-page {
-  background-image: url("public/Assests/bg/gamebg3.jpg");
+  background-image: url("/gamebg3.jpg");
   background-position: center;
   background-size: cover;
   height: 100vh;

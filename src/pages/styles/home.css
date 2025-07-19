@@ -7,7 +7,7 @@
 
 /* home-page styling*/
 .home-page{
-    background-image: url("../../../public/Assests/bg/bg00.gif");
+    background-image: url("/bg00.gif");
     background-position: center;
     background-size: cover;
     height: 100vh;

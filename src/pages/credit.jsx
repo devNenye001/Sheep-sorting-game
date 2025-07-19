@@ -4,7 +4,7 @@ function Credits() {
   const navigate = useNavigate();
   return (
     <section className="credits-page">
-      <img src="/public/Assests/game-logo.png" alt="" />
+      <img src="/game-logo.png" alt="" />
       <h1>CREDITS</h1>
       <p>
         Sheep, Cow, and Pig Sprites by Daniel Eddeland. available on
